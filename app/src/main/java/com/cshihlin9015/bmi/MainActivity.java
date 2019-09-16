@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle(R.string.help)
                         .setMessage(R.string.bmi_info)
-                        .setPositiveButton(R.string.ok,null)
+                        .setPositiveButton(R.string.ok, null)
                         .show();
             }
         });
@@ -58,7 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
         result.setText(getString(R.string.your_bmi_is) + bmi);
 
-        new AlertDialog.Builder(this)
+        Intent intent = new Intent(this, ResultActivity.class);
+        intent.putExtra("BMI", bmi);
+        startActivity(intent);
+
+        /*new AlertDialog.Builder(this)
                 .setTitle("BMI")
                 .setMessage(getString(R.string.your_bmi_is) + bmi)
                 .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
@@ -68,6 +73,6 @@ public class MainActivity extends AppCompatActivity {
                         edHeight.setText("");
                     }
                 })
-                .show();
+                .show();*/
     }
 }
